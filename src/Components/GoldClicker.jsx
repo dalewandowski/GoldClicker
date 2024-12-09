@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
 import { Coins, Pickaxe, RefreshCcw } from "lucide-react";
 import "../App.css";
-import "./GoldClicker.css";
+import styles from "./GoldClicker.module.css";
+import AnimatedValue from "./functional/AnimatedValue";
 
 function GoldClicker() {
   const [gold, setGold] = useState(0);
@@ -10,10 +10,11 @@ function GoldClicker() {
   const [clickUpgradeCost, setClickUpgradeCost] = useState(10);
   const [autoClickerCost, setAutoClickerCost] = useState(10000);
   const [isBuyed, setIsBuyed] = useState(false);
+
   /////////////////////////////////////////////////////////////////////
   // Upgrade Click Power
   const upgradeClickPower = () => {
-    if (gold >= clickPower) {
+    if (gold >= clickUpgradeCost) {
       setGold((prevGold) => prevGold - clickUpgradeCost);
       setClickPower((prevClickPower) => prevClickPower + 1);
       setClickUpgradeCost((prevClickUpgradeCost) => prevClickUpgradeCost * 2);
@@ -26,7 +27,7 @@ function GoldClicker() {
   const buyAutoClicker = () => {
     if (gold >= autoClickerCost) {
       setGold((prevGold) => prevGold - autoClickerCost);
-      setIsBuyed(!isBuyed);
+      setIsBuyed(true);
       setAutoClickerCost(autoClickerCost);
     }
   };
@@ -37,36 +38,28 @@ function GoldClicker() {
       }, 500);
       return () => clearInterval(interval);
     }
-  }, [isBuyed]);
+  }, [isBuyed, clickPower]);
   ///////////////////////////////////////////////////////////////////////////
+
   return (
-    <div className="app">
+    <div className={styles.app}>
       <h1>Gold Clicker</h1>
-      <div className="headers">
+      <div className={styles.headers}>
         <p>
-          <Coins className="icon-coin" /> Ilość złota:{" "}
-          <motion.span
-            key={gold}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            {gold}
-          </motion.span>
+          <Coins className={styles["icon-coin"]} /> Ilość złota:{" "}
+          <AnimatedValue value={gold} />
         </p>
         <p>
-          <Pickaxe className="icon-pickaxe" />
-          Moc wydobycia{" "}
-          <motion.span
-            key={clickPower}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            {clickPower}
-          </motion.span>
+          <Pickaxe className={styles["icon-pickaxe"]} />
+          Moc wydobycia <AnimatedValue value={clickPower} />
         </p>
         <p>
-          <RefreshCcw className="icon-refresh" />
-          Auto Klikacz: {isBuyed ? "Aktywny" : "Nieaktywny"}
+          <RefreshCcw className={styles["icon-refresh"]} />
+          Auto Klikacz:{" "}
+          <AnimatedValue
+            value={isBuyed ? "Aktywny" : "Nieaktywny"}
+            animationType={isBuyed ? "slideX" : "pulse"}
+          />
         </p>
         <hr />
         <button onClick={() => setGold(gold + clickPower)}>
@@ -78,10 +71,16 @@ function GoldClicker() {
         </button>{" "}
         <br />
         <button
+          style={{
+            background: isBuyed ? "#28a42c" : "",
+            border: isBuyed ? "1px solid #28a42c" : "",
+          }}
           disabled={gold < autoClickerCost || isBuyed}
           onClick={buyAutoClicker}
         >
-          Kup Auto Klikacz (Cena: {autoClickerCost})
+          {isBuyed
+            ? "Wykupiony"
+            : "Kup Auto Klikacz (Cena: " + autoClickerCost + ")"}
         </button>
       </div>
     </div>

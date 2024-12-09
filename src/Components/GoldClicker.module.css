@@ -12,3 +12,17 @@
   margin-right: 5px;
   color: #39a6b9;
 }
+
+.headers span {
+  display: inline-block;
+}
+
+p {
+  text-align: center;
+}
+@media screen and (max-width: 575px) {
+  .app {
+    width: auto;
+    height: 80vh;
+  }
+}
