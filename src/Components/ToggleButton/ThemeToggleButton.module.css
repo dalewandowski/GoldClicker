@@ -1,0 +1,16 @@
+.toggleButton {
+  position: relative;
+  width: 220px;
+  height: 34px;
+  background-color: var(--button-bg);
+  border-radius: 34px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0 auto;
+}
+
+[data-theme="dark"] .toggleButton {
+  background-color: #2196f3;
+  color: white;
+}
