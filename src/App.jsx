@@ -1,11 +1,16 @@
 import GoldClicker from "./Components/GoldClicker";
 import ThemeToggleButton from "./Components/ToggleButton/ThemeToggleButton";
+import ClassicToggleButton from "./Components/ClassicToggleButton/ClassicToggleButton";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   return (
     <>
-      <GoldClicker />
-      <ThemeToggleButton />
+      <ThemeProvider>
+        <ClassicToggleButton />
+        <ThemeToggleButton />
+        <GoldClicker />
+      </ThemeProvider>
     </>
   );
 }

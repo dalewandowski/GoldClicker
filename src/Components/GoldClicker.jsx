@@ -1,16 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Coins, Pickaxe, RefreshCcw } from "lucide-react";
 import "../App.css";
 import styles from "./GoldClicker.module.css";
 import AnimatedValue from "./functional/AnimatedValue";
+import useLocalStorage from "use-local-storage";
 
 function GoldClicker() {
-  const [gold, setGold] = useState(0);
-  const [clickPower, setClickPower] = useState(1);
-  const [clickUpgradeCost, setClickUpgradeCost] = useState(10);
-  const [autoClickerCost, setAutoClickerCost] = useState(10000);
-  const [isBuyed, setIsBuyed] = useState(false);
-
+  const [gold, setGold] = useLocalStorage("gold", 0);
+  const [clickPower, setClickPower] = useLocalStorage("clickPower", 1);
+  const [clickUpgradeCost, setClickUpgradeCost] = useLocalStorage(
+    "clickUpgradeCost",
+    10
+  );
+  const [autoClickerCost, setAutoClickerCost] = useLocalStorage(
+    "autoClickerCost",
+    10000
+  );
+  const [isBuyed, setIsBuyed] = useLocalStorage("isBuyed", false);
   /////////////////////////////////////////////////////////////////////
   // Upgrade Click Power
   const upgradeClickPower = () => {
