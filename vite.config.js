@@ -12,7 +12,7 @@ export default defineConfig({
         short_name: "Gold Clicker",
         theme_color: "#ffffff",
         start_url: "./",
-        diplay: "standalone",
+        display: "standalone",
         icons: [
           {
             src: "icons/manifest-icon-192.maskable.png",
@@ -42,5 +42,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: "./",
+  base: "/GoldClicker/",
 });
