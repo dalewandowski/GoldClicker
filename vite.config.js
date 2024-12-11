@@ -42,5 +42,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: "/GoldClicker/",
+  base: "./",
 });
