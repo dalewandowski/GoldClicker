@@ -8,12 +8,20 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "dev:electron": "electron ."
-    
+    "dev:electron": "electron .",
+    "build:electron": "electron-builder"
   },
   "main": "electron/main.js",
-  
-  
+  "build": {
+    "productName": "Gold Clicker",
+    "appId": "com.gem.goldclicker",
+    "asar": true,
+    "asarUnpack": "./node_modules",
+    "files": [
+      "dist/**/*",
+      "electron"
+    ]
+  },
   "dependencies": {
     "@theme-toggles/react": "^4.1.0",
     "lodash.merge": "^4.6.2",
@@ -29,6 +37,8 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
     "eslint": "^9.15.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
