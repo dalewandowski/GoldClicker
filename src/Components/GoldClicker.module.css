@@ -17,6 +17,12 @@
   display: inline-block;
 }
 
+button:disabled {
+  /* background-color: #807a7a; */
+  border: 1px solid #ccc;
+  cursor: not-allowed;
+  opacity: 0.3;
+}
 p {
   text-align: center;
 }

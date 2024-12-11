@@ -19,7 +19,7 @@
     "asarUnpack": "./node_modules",
     "files": [
       "dist/**/*",
-      "electron"
+      "electron/**/*"
     ]
   },
   "dependencies": {
